@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chuove.app.cms.dao.ConsumerDAO">
+
+ 	<resultMap type="com.chuove.app.cms.model.Consumer" id="consumerResult">
+		<result property="userId" column="userId"/>
+		<result property="wechatNum" column="wechatNum"/>
+		<result property="userImg" column="userImg"/>
+		<result property="mobileNum" column="mobileNum"/>
+		<result property="userName" column="userName"/>
+		<result property="userPwd" column="userPwd"/>
+		<result property="userSex" column="userSex"/>
+		<result property="cardId" column="cardId"/>
+		<result property="cardImg1" column="cardImg1"/>
+		<result property="cardImg2" column="cardImg2"/>
+		<result property="referee" column="referee"/>
+		<result property="totalAmout" column="totalAmout"/>
+		<result property="userStatus" column="userStatus"/>
+		<result property="createTime" column="createTime"/>
+		<result property="updateTime" column="updateTime"/>
+		<result property="sortId" column="sortId"/>
+	</resultMap> 
+	
+	<select id="findPhoneNumber" resultType="java.lang.String">
+		SELECT mobileNum
+		FROM chuove_consumers_users
+	</select>
+	
+	<select id="findConsumerByUserId" parameterType="int" resultType="com.chuove.app.cms.model.Consumer">
+		SELECT *
+		FROM chuove_consumers_users
+		WHERE userId = #{userId}
+	</select>
+	
+	<select id="findConsumerByMobileNum" parameterType="java.lang.String" resultType="com.chuove.app.cms.model.Consumer">
+		SELECT *
+		FROM chuove_consumers_users
+		WHERE mobileNum = #{mobileNum}
+	</select>
+	
+	<insert id="saveRegistConsumer" parameterType="com.chuove.app.cms.model.Consumer">
+		INSERT INTO chuove_consumers_users(mobileNum,userPwd,createTime)
+		VALUES(#{mobileNum},#{userPwd},#{createTime})
+	</insert>
+	
+	<insert id="saveConsumer" parameterType="com.chuove.app.cms.model.Consumer">
+		INSERT INTO 
+		chuove_consumers_users(wechatNum,userImg,mobileNum,userName,userPwd,userSex,
+				cardId,cardImg1,cardImg2,referee,totalAmout,userStatus,createTime,updateTime,sortId)
+		VALUES(#{wechatNum},#{userImg},#{mobileNum},#{userName},#{userPwd},#{userSex},#{cardId},
+				#{cardImg1},#{cardImg2},#{referee},#{totalAmout},#{userStatus},#{createTime},#{updateTime},#{sortId})
+	</insert>
+	
+	<select id="findPwdByMobileNum" parameterType="java.lang.String" resultType="java.lang.String">
+		SELECT userPwd
+		FROM chuove_consumers_users
+		WHERE mobileNum = #{mobileNum}
+	</select>
+	
+	
+	
+	
+</mapper>
+
+
+
+
+
+

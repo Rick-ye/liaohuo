@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chuove.app.cms.dao.IUserDAO">
+
+	<resultMap type="com.chuove.app.cms.model.UserDo" id="userDoResult"
+		autoMapping="true">
+		<result property="userId" column="userId" />
+		<result property="mobileNumber" column="mobileNumber" />
+		<result property="userName" column="userName" />
+		<result property="realName" column="realName" />
+		<result property="userPwd" column="userPwd" />
+		<result property="userEmail" column="userEmail" />
+		<result property="userStatus" column="userStatus" />
+		<result property="createTime" column="createTime" />
+		<result property="lastLogin" column="lastLogin" />
+		<association property="role" column="roleId" resultMap="roleDoResult"
+			columnPrefix="role_">
+		</association>
+	</resultMap>
+	<resultMap type="com.chuove.app.cms.model.RoleDo" id="roleDoResult"
+		autoMapping="true">
+	</resultMap>
+	<resultMap type="com.chuove.app.cms.model.PermissionDo"
+		id="permissionDoResult" autoMapping="true"></resultMap>
+	<resultMap type="com.chuove.app.cms.model.PermissionDo"
+		id="permissionDoTreeResult" autoMapping="true">
+		<id property="permissionId" column="permissionId" />
+		<result property="parentId" column="parentId" />
+		<result property="permissionName" column="permissionName" />
+		<result property="permissionAlias" column="permissionAlias" />
+		<result property="permissionDesc" column="permissionDesc" />
+		<result property="createTime" column="createTime" />
+		<result property="updateTime" column="updateTime" />
+		<collection property="permissionList"
+			column="{parentId=permissionId}" ofType="com.chuove.app.cms.model.PermissionDo"
+			javaType="java.util.ArrayList" select="findOwnPermissionDoTree">
+		</collection>
+	</resultMap>
+
+
+
+	<insert id="saveUser" parameterType="com.chuove.app.cms.model.UserDo"
+		useGeneratedKeys="true" keyProperty="userId">
+		insert into
+		tb_user(mobileNumber,userName,realName,userPwd,userEmail,createUserId,userStatus,createTime)
+		values(#{mobileNumber},#{userName},#{realName},#{userPwd},#{userEmail},#{createUserId},#{userStatus},#{createTime})
+	</insert>
+
+	<select id="findAllUser" resultMap="userDoResult">
+		select * from tb_user
+	</select>
+	<select id="findUserByUserName" resultMap="userDoResult"
+		parameterType="java.lang.String">
+		SELECT u.*,
+		r.roleId AS 'role_roleId',
+		r.roleAlias AS 'role_roleAlias',
+		r.roleName AS 'role_roleName',
+		r.createTime AS 'role_createTime',
+		r.updateTIme AS 'role_updateTime'
+
+		FROM (SELECT * FROM tb_user WHERE
+		userName=#{userName} ) u LEFT JOIN
+		tb_user_role ur ON
+		u.userId=ur.userId LEFT JOIN tb_role r ON
+		r.roleId=ur.roleId
+	</select>
+	<select id="findUserByCreateUserId" resultMap="userDoResult"
+		parameterType="java.lang.Integer">
+		SELECT u.*,
+		r.roleId AS 'role_roleId',
+		r.roleAlias AS 'role_roleAlias',
+		r.roleName AS 'role_roleName',
+		r.createTime AS 'role_createTime',
+		r.updateTIme AS 'role_updateTime'
+
+		FROM (SELECT * FROM tb_user WHERE
+		createUserId=#{userId} ) u LEFT JOIN
+		tb_user_role ur ON
+		u.userId=ur.userId LEFT JOIN tb_role r ON
+		r.roleId=ur.roleId
+	</select>
+
+	<select id="findUserByUserId" resultMap="userDoResult"
+		parameterType="java.lang.Integer">
+		SELECT u.*,
+		r.roleId AS 'role_roleId',
+		r.roleAlias AS 'role_roleAlias',
+		r.roleName AS 'role_roleName',
+		r.createTime AS 'role_createTime',
+		r.updateTIme AS 'role_updateTime'
+
+		FROM (SELECT * FROM tb_user WHERE userId=#{userId} )
+		u LEFT JOIN
+		tb_user_role ur ON u.userId=ur.userId LEFT JOIN tb_role r
+		ON
+		r.roleId=ur.roleId
+	</select>
+
+    <select id="findUserByRoleName" resultMap="userDoResult"
+		parameterType="java.util.Map">
+		SELECT u.*,
+		r.roleId AS 'role_roleId',
+		r.roleAlias AS 'role_roleAlias',
+		r.roleName AS 'role_roleName',
+		r.createTime AS 'role_createTime',
+		r.updateTIme AS 'role_updateTime'
+
+		FROM (SELECT * FROM tb_role WHERE roleName=#{roleName} )
+		r LEFT JOIN
+		tb_user_role ur ON r.roleId=ur.roleId LEFT JOIN  tb_user  u
+		ON
+		u.userId=ur.userId 
+	</select>
+
+	<update id="updateUserStatus" parameterType="java.util.HashMap">
+		update tb_user set
+		userStatus=#{userStatus} where userId=#{userId}
+	</update>
+	
+	<update id="updateUserInfo" parameterType="com.chuove.app.cms.model.UserDo">
+		update tb_user set
+		mobileNumber=#{mobileNumber},userName=#{userName},realName=#{realName},userEmail=#{userEmail}
+		where userId=#{userId}
+	</update>
+
+	<select id="findAllRole" parameterType="java.lang.Integer"
+		resultMap="roleDoResult">
+		select * from tb_role 
+	</select>
+
+	<insert id="saveRoleDo" parameterType="com.chuove.app.cms.model.RoleDo" useGeneratedKeys="true" keyProperty="roleId">
+		insert into tb_role
+		(roleName,roleAlias,roleDesc,createTime,updateTime)
+		values(#{roleName},#{roleAlias},#{roleDesc},#{createTime},#{updateTime})
+	</insert>
+	<update id="deleteRoleDo" parameterType="java.lang.Integer">
+		delete from tb_role
+		where roleId=#{roleId}
+	</update>
+
+	<select id="findRoleByRoleId" parameterType="java.lang.Integer"
+		resultMap="roleDoResult">
+		select * from tb_role where roleId=#{roleId}
+	</select>
+
+	<update id="updateRoleDoInfo" parameterType="com.chuove.app.cms.model.RoleDo">
+		update tb_role set
+		roleName=#{roleName},roleAlias=#{roleAlias},
+		roleDesc=#{roleDesc},updateTime=#{updateTime} where roleId=#{roleId}
+	</update>
+
+	<select id="findSuperParentPermission" resultMap="permissionDoResult">
+		select * from
+		tb_permission where parentId=0
+	</select>
+
+	<insert id="savePermissionDo" parameterType="com.chuove.app.cms.model.PermissionDo">
+		insert into
+		tb_permission
+		(userId,parentId,permissionAlias,permissionName,permissionDesc,createTime,updateTime)
+		values(#{userId},#{parentId},#{permissionAlias},#{permissionName},#{permissionDesc},#{createTime},#{updateTime})
+	</insert>
+	<update id="deletePermissionDo" parameterType="java.lang.Integer">
+		delete from
+		tb_permission where permissionId=#{permissionId}
+	</update>
+
+	<select id="findPerssionByRoleId" parameterType="java.lang.Integer"
+		resultMap="permissionDoResult">
+		select * from tb_permission where
+		permissionId=#{permissionId}
+	</select>
+
+	<update id="updatePermissionDoInfo" parameterType="com.chuove.app.cms.model.RoleDo">
+		update
+		tb_permission set
+		parentId=#{parentId},permissionName=#{permissionName},permissionAlias=#{permissionAlias},
+		permissionDesc=#{permissionDesc},updateTime=#{updateTime} where
+		permissionId=#{permissionId}
+	</update>
+
+	<select id="findPermissionDoTree" parameterType="java.lang.Integer"
+		resultMap="permissionDoResult">
+		select * from tb_permission where parentId=#{parentId}
+	</select>
+	<select id="findOwnPermissionByCondition" parameterType="java.util.List"
+		resultMap="permissionDoResult">
+		SELECT * FROM tb_permission WHERE userId IN
+		<foreach collection="list" index="index" item="item" open="("
+			separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+	<select id="findOwnPermissionDoTree" parameterType="java.util.HashMap"
+		resultMap="permissionDoTreeResult">
+		SELECT p.*,ur.userId as tmpUserId FROM
+		(SELECT userId,roleId
+		FROM tb_user_role WHERE
+		userId=#{userId}) ur
+		LEFT JOIN
+		tb_role_permission rp ON
+		rp.roleId=ur.roleId
+		LEFT JOIN tb_permission p
+		ON
+		p.permissionId=rp.permissionId
+		WHERE p.parentId=#{parentId}
+	</select>
+
+	<insert id="saveUserRole" parameterType="com.chuove.app.cms.model.UserRole">
+		insert into tb_user_role
+		(userId,roleId) values(#{userId},#{roleId})
+	</insert>
+
+	<select id="findUserRole" parameterType="java.lang.Integer"
+		resultType="com.chuove.app.cms.model.UserRole">
+		select * from tb_user_role where userId=#{userId}
+	</select>
+
+	<update id="updateUserRole" parameterType="java.util.HashMap">
+		update tb_user_role
+		set roleId=#{roleId} where userId=#{userId}
+	</update>
+
+	<insert id="saveRolePermission" parameterType="com.chuove.app.cms.model.RolePermission">
+		insert into
+		tb_role_permission (roleId,permissionId)
+		values(#{roleId},#{permissionId})
+	</insert>
+
+	<select id="findRolePersission" resultType="com.chuove.app.cms.model.RolePermission"
+		parameterType="java.util.Map">
+		select * from tb_role_permission where roleId=#{roleId}
+		and
+		permissionId=#{permissionId}
+	</select>
+
+	<update id="deleteRolePermission" parameterType="java.lang.Integer">
+		delete from
+		tb_role_permission where roleId=#{roleId}
+	</update>
+
+	
+	<delete id="deleteUserByUserId" parameterType="java.lang.Integer">
+		delete from tb_user where userId=#{userId}
+	</delete>
+	
+	<update id="updateUserPwd" parameterType="java.util.HashMap">
+	    update tb_user set userPwd=#{userPwd} where userId=#{userId}
+	</update>
+	
+	
+</mapper>  

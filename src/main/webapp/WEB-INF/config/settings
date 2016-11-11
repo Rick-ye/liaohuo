@@ -1,0 +1,10 @@
+default_passwd=888888
+dest_folder=/opt/ddData/
+upload_image_folder=uploadImage
+category_folder=category
+tmp_folder=tmp
+category_image_folder=categoryImage
+dirsameimage_tmp_floder=sameimagetmp
+image_host=http://121.43.150.79:16078/
+
+

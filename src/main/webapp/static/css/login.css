@@ -1,0 +1,31 @@
+@charset "utf-8";
+/* -----------数字营销-------------
+* 登录页样式
+* Created & Modified by 陈井泉
+* Date modified 2016.6.5
+*/
+body{font-size:14px}
+
+
+.loginWraper{ position:absolute;width:100%; left:0; top:0; bottom:0; right:0;}
+.loginBox{ 
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 600px;
+  height: auto;
+  padding: 30px;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+	background-color:#edeff1; 
+	border: 5px solid #edeff1;
+  -webkit-border-radius: 15px;
+     -moz-border-radius: 15px;
+          border-radius:15px; 
+  -webkit-box-shadow:0 0 15px rgba(210, 205, 200, .4);  
+     -moz-box-shadow:0 0 15px rgba(210, 205, 200, .4);  
+          box-shadow:0 0 15px rgba(210, 205, 200, .4); }
+.loginBox .row .form-label .Hui-iconfont{ font-size:24px}
+.loginBox .input-text{ width:360px}

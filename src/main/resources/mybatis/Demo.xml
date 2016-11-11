@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chuove.app.cms.dao.IDemoDAO">
+
+	<resultMap type="com.chuove.app.cms.model.Demo" id="demoResult"
+		autoMapping="true">
+		<result property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="sex" column="sex" />
+		
+	</resultMap>
+
+	<select id="getAllDemo"  resultMap="demoResult">
+		select *  from tb_demo
+	</select>
+	
+	<select id="findDemoById" parameterType="int"
+	 			 resultMap="demoResult">
+		select * 
+		from tb_demo
+		where id = #{id}
+	</select>
+	
+	<insert id="demoAdd" parameterType="com.chuove.app.cms.model.Demo">
+		insert into 
+		tb_demo(name,sex)
+		values(#{name},#{sex})
+	</insert>
+	
+	<delete id="deleteDemoByDemoId" parameterType="int">
+		delete from tb_demo
+		where id=#{id}
+	</delete>
+	
+	<update id="updateDemoInfo" parameterType="com.chuove.app.cms.model.Demo">
+		update tb_demo
+		set name=#{name},sex=#{sex}
+		where id=#{id}
+	</update>
+	
+</mapper>  
