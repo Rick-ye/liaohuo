@@ -20,7 +20,7 @@
 		<property name="permissionsLookupEnabled" value="true"></property>
 		<property name="dataSource" ref="dataSource"></property>
 		<property name="authenticationQuery"
-			value="SELECT userPwd FROM chuove_consumers_users WHERE mobileNum = ?"></property>
+			value="SELECT userPwd FROM chuove_cons_user WHERE mobileNum = ?"></property>
 		<property name="userRolesQuery"
 			value="SELECT r.roleName from tb_user_role ur left join tb_role r on r.roleId=ur.roleId  left join tb_user u on u.userId=ur.userId WHERE u.mobileNumber = ?"></property>
 		<property name="permissionsQuery"

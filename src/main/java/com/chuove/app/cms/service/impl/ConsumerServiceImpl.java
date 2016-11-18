@@ -16,8 +16,8 @@ public class ConsumerServiceImpl implements ConsumerService {
 	private ConsumerDAO consumerDAO;
 
 	@Override
-	public List<String> findPhoneNumber() {
-		return consumerDAO.findPhoneNumber();
+	public List<String> findMobileNum() {
+		return consumerDAO.findMobileNum();
 	}
 
 	@Override
@@ -39,5 +39,26 @@ public class ConsumerServiceImpl implements ConsumerService {
 	public Consumer findConsumerByMobileNum(String mobileNum) {
 		return consumerDAO.findConsumerByMobileNum(mobileNum);
 	}
+
+	@Override
+	public void savePersonInfo(Consumer consumer) {
+		consumerDAO.savePersonInfo(consumer);
+	}
+	@Override
+	public void savePersonInfoSec(Consumer consumer) {
+		consumerDAO.savePersonInfoSec(consumer);
+	}
+	
+	@Override
+	public void saveUserImg(String userImg) {
+		consumerDAO.saveUserImg(userImg);
+	}
+
+	@Override
+	public void updatePwd(Consumer consumer) {
+		consumerDAO.updatePwd(consumer);
+	}
+
+	
 	
 }

@@ -10,6 +10,7 @@ public class Consumer implements Serializable {
 	private Integer userId;
 	private String wechatNum;
 	private String userImg;
+	private String payPwd;
 	private String mobileNum;
 	private String userName;
 	private String userPwd;
@@ -24,23 +25,18 @@ public class Consumer implements Serializable {
 	private Date updateTime;
 	private Integer sortId;
 	
-	
 	public Consumer() {
 
 	}
 	
-	public Consumer(String mobileNum, String userPwd){
-		this.mobileNum = mobileNum;
-		this.userPwd = userPwd;
-	}
-	
-	public Consumer(Integer userId, String wechatNum, String userImg, String mobileNum, String userName, String userPwd,
+	public Consumer(Integer userId, String wechatNum, String userImg, String payPwd, String mobileNum, String userName, String userPwd,
 			String userSex, String cardId, String cardImg1, String cardImg2, String referee, float totalAmout,
 			Integer userStatus, Date createTime, Date updateTime, Integer sortId) {
 		super();
 		this.userId = userId;
 		this.wechatNum = wechatNum;
 		this.userImg = userImg;
+		this.payPwd = payPwd;
 		this.mobileNum = mobileNum;
 		this.userName = userName;
 		this.userPwd = userPwd;
@@ -62,6 +58,14 @@ public class Consumer implements Serializable {
 	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
+	public String getPayPwd() {
+		return payPwd;
+	}
+
+	public void setPayPwd(String payPwd) {
+		this.payPwd = payPwd;
+	}
+
 	public String getWechatNum() {
 		return wechatNum;
 	}
@@ -181,14 +185,7 @@ public class Consumer implements Serializable {
 		return true;
 	}
 
-	@Override
-	public String toString() {
-		return "Consumer [userId=" + userId + ", wechatNum=" + wechatNum + ", userImg=" + userImg + ", mobileNum="
-				+ mobileNum + ", userName=" + userName + ", userPwd=" + userPwd + ", userSex=" + userSex + ", cardId="
-				+ cardId + ", cardImg1=" + cardImg1 + ", cardImg2=" + cardImg2 + ", referee=" + referee
-				+ ", totalAmout=" + totalAmout + ", userStatus=" + userStatus + ", createTime=" + createTime
-				+ ", updateTime=" + updateTime + ", sortId=" + sortId + "]";
-	}
+	
 	
 	
 }

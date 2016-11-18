@@ -22,4 +22,7 @@ public enum UserType {
 	public String getText() {
 		return text;
 	}
+	
+	
+	
 }

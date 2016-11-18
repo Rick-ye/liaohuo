@@ -6,6 +6,7 @@
 		<result property="userId" column="userId"/>
 		<result property="wechatNum" column="wechatNum"/>
 		<result property="userImg" column="userImg"/>
+		<result property="payPwd" column="payPwd"/>
 		<result property="mobileNum" column="mobileNum"/>
 		<result property="userName" column="userName"/>
 		<result property="userPwd" column="userPwd"/>
@@ -21,31 +22,31 @@
 		<result property="sortId" column="sortId"/>
 	</resultMap> 
 	
-	<select id="findPhoneNumber" resultType="java.lang.String">
+	<select id="findMobileNum" resultType="java.lang.String">
 		SELECT mobileNum
-		FROM chuove_consumers_users
+		FROM chuove_cons_user
 	</select>
 	
 	<select id="findConsumerByUserId" parameterType="int" resultType="com.chuove.app.cms.model.Consumer">
 		SELECT *
-		FROM chuove_consumers_users
+		FROM chuove_cons_user
 		WHERE userId = #{userId}
 	</select>
 	
 	<select id="findConsumerByMobileNum" parameterType="java.lang.String" resultType="com.chuove.app.cms.model.Consumer">
 		SELECT *
-		FROM chuove_consumers_users
+		FROM chuove_cons_user
 		WHERE mobileNum = #{mobileNum}
 	</select>
 	
 	<insert id="saveRegistConsumer" parameterType="com.chuove.app.cms.model.Consumer">
-		INSERT INTO chuove_consumers_users(mobileNum,userPwd,createTime)
+		INSERT INTO chuove_cons_user(mobileNum,userPwd,createTime)
 		VALUES(#{mobileNum},#{userPwd},#{createTime})
 	</insert>
 	
 	<insert id="saveConsumer" parameterType="com.chuove.app.cms.model.Consumer">
 		INSERT INTO 
-		chuove_consumers_users(wechatNum,userImg,mobileNum,userName,userPwd,userSex,
+		chuove_cons_user(wechatNum,userImg,mobileNum,userName,userPwd,userSex,
 				cardId,cardImg1,cardImg2,referee,totalAmout,userStatus,createTime,updateTime,sortId)
 		VALUES(#{wechatNum},#{userImg},#{mobileNum},#{userName},#{userPwd},#{userSex},#{cardId},
 				#{cardImg1},#{cardImg2},#{referee},#{totalAmout},#{userStatus},#{createTime},#{updateTime},#{sortId})
@@ -53,13 +54,33 @@
 	
 	<select id="findPwdByMobileNum" parameterType="java.lang.String" resultType="java.lang.String">
 		SELECT userPwd
-		FROM chuove_consumers_users
+		FROM chuove_cons_user
 		WHERE mobileNum = #{mobileNum}
 	</select>
 	
+	<update id="savePersonInfo" parameterType="com.chuove.app.cms.model.Consumer">
+		UPDATE chuove_cons_user 
+		SET userName=#{userName},userSex=#{userSex}
+		WHERE userId=1
+	</update>
 	
+	<update id="savePersonInfoSec" parameterType="com.chuove.app.cms.model.Consumer">
+		UPDATE chuove_cons_user 
+		SET userName=#{userName},userSex=#{userSex},cardId=#{cardId}
+		WHERE userId=1
+	</update>
 	
+	<update id="saveUserImg" parameterType="java.lang.String">
+		UPDATE chuove_cons_user
+		SET userImg=#{userImg}
+		WHERE userId=1
+	</update>
 	
+	<update id="updatePwd" parameterType="com.chuove.app.cms.model.Consumer">
+		UPDATE chuove_cons_user
+		SET userPwd = #{userPwd},payPwd=#{payPwd}
+		WHERE mobileNum = #{mobileNum} and userId=1
+	</update>
 </mapper>
 
 

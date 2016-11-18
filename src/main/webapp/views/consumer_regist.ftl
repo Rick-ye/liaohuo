@@ -40,10 +40,7 @@ $(function(){
 		var veriCode = $("#veriCode").val();
 		var userPwd = $("#userPwd").val();
 		var userPwd1 = $("#userPwd1").val();
-		var data = {'phoneNumber':phoneNumber,
-					'veriCode':veriCode,
-					'userPwd':userPwd,
-					'userPwd1':userPwd1 };
+		
 		var pass = true;
 		//判断手机号
 		if(! (/^1[34578]\d{9}$/.test(phoneNumber))){ 
@@ -67,6 +64,9 @@ $(function(){
 		if(! pass){
 			return pass;
 		}
+		var data = {'phoneNumber':phoneNumber,
+					'veriCode':veriCode,
+					'userPwd':userPwd};
 		$.ajax({
 			url:'${ctx}/consumer/doRegist',
 			data:data,
@@ -74,7 +74,6 @@ $(function(){
 			dataType:'text',
 			success:function(data){
 				var json = $.parseJSON(data);
-				console.log(json);
 				if(json.status == 200){
 					layer.msg('注册成功!',{icon:1,time:1000});
 					<!--setTimeout("javascript:location.href='login.do'", 1000);-->
@@ -110,8 +109,8 @@ $(function(){
 			success : function(data) {
 				var json=$.parseJSON(data);
 				if(json.status == 200){
-					layer.msg('已发送!',{icon:1,time:1000});
 					time(this);
+					layer.msg('已发送!',{icon:1,time:1000});
 					<!--document.getElementById("#button").value = "已发送";-->
 				}else{
 			     	$("#test").html("<font color=\"red\">"+json.message+"</font>");

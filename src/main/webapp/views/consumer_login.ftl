@@ -5,7 +5,7 @@
 		<meta charset="UTF-8">
 	</head>
 	<body>
-		<form action="${ctx}/consumer/doLogin.do" method="post">
+		<form action="${ctx}/consumer/doLogin" method="post">
 			手机号：<input type="text" name="mobileNum" value="">
 			密码：<input type="password" name="password">
 			<input type="submit" value="登录">

@@ -27,19 +27,19 @@ import com.chuove.app.cms.model.Consumer;
 import com.chuove.app.cms.service.ConsumerService;
 
 @Controller
-@RequestMapping(value="/consumer")
+@RequestMapping(value="consumer")
 public class ConsumerLoginController {
 	private static Logger logger = LoggerFactory.getLogger(ConsumerLoginController.class);
 	
 	@Autowired
 	private ConsumerService consumerService;
 	
-	@RequestMapping(value="/login.do")
+	@RequestMapping(value="login")
 	public String login(){
 		try {
 			Subject subject = SecurityUtils.getSubject();
 			if(subject.isAuthenticated()){
-				return "redirect:/consumer/index.do";
+				return "redirect:/consumer/index";
 			}
 		} catch (Exception e) {
 			logger.error("error", e);
@@ -47,23 +47,23 @@ public class ConsumerLoginController {
 		return "consumer_login";
 	}
 	
-	@RequestMapping(value="index.do")
-	public String index(ModelMap model){
+	@RequestMapping(value="index")
+	public String index(){
 		try {
 			Subject subject = SecurityUtils.getSubject();
 			if(! subject.isAuthenticated()){
 				return "consumer_login";
 			} else {
 				Consumer consumer = consumerService.findConsumerByMobileNum(subject.getPrincipal().toString());
-				model.put("cons",consumer);
+				//model.put("cons",consumer);
 			}
 		} catch (Exception e) {
 			logger.error("error",e);
 		}
-		return "consumer_index";
+		return "index2";
 	}
 	
-	@RequestMapping(value="/doLogin.do")
+	@RequestMapping(value="doLogin")
 	public String doLogin(HttpServletResponse response, HttpServletRequest request, Model model){
 		String msg="";
 		String mobileNum = request.getParameter("mobileNum");
@@ -79,7 +79,7 @@ public class ConsumerLoginController {
 				Consumer consumer = consumerService.findConsumerByMobileNum(mobileNum);
 				subject.getSession().setAttribute(SessionKey.KEY_CONSUMER, consumer);
 				subject.getSession().setAttribute(SessionKey.KEY_USERID, consumer.getUserId());
-				return "redirect:/consumer/index.do";
+				return "redirect:/consumer/index";
 			} else {
 				return "consumer_login";
 			}
@@ -112,6 +112,8 @@ public class ConsumerLoginController {
 			model.addAttribute("message", msg);
 			System.out.println(msg);
 		}
+		
 		return "consumer_login";
 	}
+	
 }
