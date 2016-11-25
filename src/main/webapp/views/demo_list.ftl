@@ -21,16 +21,16 @@
 			</tr>
 		</thead>
 		<tbody>
-		<#list demoList as demo>
-			<tr class="text-c">
-				<td>${demo.id}</td>
-				<td>${demo.name}</td>
-				<td>${demo.sex}</td>
-				<td class="td-manage">
-				   <a title="编辑用户" href="javascript:;" onclick="admin_edit('用户编辑','${ctx}/admin/demoEdit',${demo.id},'800','500')" class="ml-5" style="text-decoration:none">编辑</a>
-				   <a title="删除用户" href="javascript:;" onclick="admin_del(this,${demo.id})" class="ml-5" style="text-decoration:none">删除</a>
-				</td>
-			</tr>
+			<#list demoList as demo>
+				<tr class="text-c">
+					<td>${demo.id}</td>
+					<td>${demo.name}</td>
+					<td>${demo.sex}</td>
+					<td class="td-manage">
+					   <a title="编辑用户" href="javascript:;" onclick="admin_edit('用户编辑','${ctx}/admin/demoEdit',${demo.id},'800','500')" class="ml-5" style="text-decoration:none">编辑</a>
+					   <a title="删除用户" href="javascript:;" onclick="admin_del(this,${demo.id})" class="ml-5" style="text-decoration:none">删除</a>
+					</td>
+				</tr>
 			</#list>
 		</tbody>
 	</table>

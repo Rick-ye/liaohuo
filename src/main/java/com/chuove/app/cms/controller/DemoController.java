@@ -5,6 +5,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.chuove.app.cms.code.ActionStatus;
+import com.chuove.app.cms.code.SessionKey;
 import com.chuove.app.cms.common.utils.StringUtils;
 import com.chuove.app.cms.model.Demo;
 import com.chuove.app.cms.service.IDemoService;
@@ -27,6 +30,8 @@ import com.sun.tools.hat.internal.parser.Reader;
 	private static final Logger logger = LoggerFactory.getLogger(DemoController.class);
 	@Autowired
 	private IDemoService demoService;
+	
+	
 	@RequestMapping(value = "demolist")
 	public String list(HttpServletRequest request, ModelMap model) {
 		try{
@@ -124,6 +129,15 @@ import com.sun.tools.hat.internal.parser.Reader;
 			setStatus(ActionStatus.FAIL, "修改失败");
 		}
 		renderData(res);
+	}
+	
+	@RequestMapping(value="demoSubject")
+	public void demoSubject(HttpServletRequest req, HttpServletResponse res){
+		Subject subject = SecurityUtils.getSubject();
+		//if(subject.isAuthenticated()){
+		Object o =	subject.getSession().getAttribute(SessionKey.KEY_USERID);
+		logger.info("demoSubject ="+(Integer)o);
+		//}
 	}
 }
 

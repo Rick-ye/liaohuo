@@ -22,6 +22,7 @@
 		<result property="sortId" column="sortId"/>
 	</resultMap> 
 	
+	
 	<select id="findMobileNum" resultType="java.lang.String">
 		SELECT mobileNum
 		FROM chuove_cons_user
@@ -81,6 +82,13 @@
 		SET userPwd = #{userPwd},payPwd=#{payPwd}
 		WHERE mobileNum = #{mobileNum} and userId=1
 	</update>
+	
+	<insert id="saveConsumerAddr" parameterType="com.chuove.app.cms.model.ConsumerAddr">
+		INSERT INTO chuove_user_addr(userId,addUserName,addMobile,addPrvn,addCity,addCnty,addInfo,addStatus,createTime)
+		VALUES(#{userId},#{addUserName},#{addMobile},#{addPrvn},#{addCity},#{addCnty},#{addInfo},#{addStatus},#{createTime})
+	</insert>
+	
+	
 </mapper>
 
 

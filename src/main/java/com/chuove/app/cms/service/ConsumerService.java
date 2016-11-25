@@ -3,6 +3,7 @@ package com.chuove.app.cms.service;
 import java.util.List;
 
 import com.chuove.app.cms.model.Consumer;
+import com.chuove.app.cms.model.ConsumerAddr;
 
 public interface ConsumerService {
 	public List<String> findMobileNum();
@@ -21,4 +22,6 @@ public interface ConsumerService {
 	public void saveUserImg(String userImg);
 	//修改登录密码和支付密码
 	public void updatePwd(Consumer consumer);
+	
+	public void saveConsumerAddr(ConsumerAddr addr);
 }

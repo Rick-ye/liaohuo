@@ -3,6 +3,7 @@ package com.chuove.app.cms.dao;
 import java.util.List;
 
 import com.chuove.app.cms.model.Consumer;
+import com.chuove.app.cms.model.ConsumerAddr;
 
 public interface ConsumerDAO {
 	public List<String> findMobileNum();
@@ -24,4 +25,6 @@ public interface ConsumerDAO {
 	public void saveUserImg(String userImg);
 	//修改登录密码和支付密码
 	public void updatePwd(Consumer consumer);
+
+	public void saveConsumerAddr(ConsumerAddr addr);
 }

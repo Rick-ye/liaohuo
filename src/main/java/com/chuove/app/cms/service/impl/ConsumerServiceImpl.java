@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.chuove.app.cms.dao.ConsumerDAO;
 import com.chuove.app.cms.model.Consumer;
+import com.chuove.app.cms.model.ConsumerAddr;
 import com.chuove.app.cms.service.ConsumerService;
 
 @Service
@@ -58,6 +59,12 @@ public class ConsumerServiceImpl implements ConsumerService {
 	public void updatePwd(Consumer consumer) {
 		consumerDAO.updatePwd(consumer);
 	}
+
+	@Override
+	public void saveConsumerAddr(ConsumerAddr addr) {
+		consumerDAO.saveConsumerAddr(addr);
+	}
+
 
 	
 	
