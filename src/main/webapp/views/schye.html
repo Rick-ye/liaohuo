@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>搜索</title>
+		<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+		<!-- Bootstrap -->
+		<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+		<link href="css/bootstrap-pf.css" rel="stylesheet" media="screen">
+		<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery.js"></script>
+
+		 
+      
+       </head>
+
+	   <body>
+        
+ <div class="top1"> 搜索 <a href="index2.html" class="fhback"><img src="img/fhback.png"></a></div>
+ 
+<ul id="myTab" class="nav nav-tabs" style="margin-top: 10px; font-size: 18px;" >
+   <li class="active" style="margin-left: 30%;">
+   	<a href="#home" data-toggle="tab"> 商品</a>
+   </li>
+   <li><a href="#ios" data-toggle="tab">商铺</a></li> 
+</ul>
+ 
+<div id="myTabContent" class="tab-content">
+<div class="tab-pane fade in active" id="home">
+	
+<form role="form" style="margin-top:30px; text-align: center;">
+<div class="form-group col-xs-12  has-warning  has-feedback">
+<input type="email" class="form-control input-lg" id="name" placeholder="请输入商品关健词">
+	 <span class="glyphicon glyphicon-remove form-control-feedback" style="margin-right: 10px;"></span>
+</div>
+ <div class="col-xs-2"></div>
+<div class="col-xs-8">
+<label class="radio-inline">
+<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 列表
+</label>
+<label class="radio-inline" style="margin-left: 60px;">
+ <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 地图
+</label>
+</div>
+ 
+<div class="col-xs-12" style="margin-top: 30px;">
+<a class="btn btn-lg btn-pink probtn "><span class="glyphicon glyphicon-search"></span>&nbsp;搜索</a> </div>
+</form>
+
+
+</div>
+<div class="tab-pane fade" id="ios">
+	
+<form role="form" style="margin-top:30px; text-align: center;">
+<div class="form-group col-xs-12  has-warning  has-feedback">
+<input type="email" class="form-control input-lg" id="name" placeholder="请输入商品关健词">
+	 <span class="glyphicon glyphicon-remove form-control-feedback" style="margin-right: 10px;"></span>
+</div>
+<div class="col-xs-2"></div>
+<div class="col-xs-8">
+	<label class="radio-inline">
+  <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> 列表
+</label>
+<label class="radio-inline" style="margin-left: 60px;">
+  <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> 地图
+</label>
+</div>
+ 
+<div class="col-xs-12" style="margin-top: 30px;" >
+ <a class="btn btn-lg shopbtn btn-pink "><span class="glyphicon glyphicon-search"></span>&nbsp;搜索</a> </div>
+</form>
+      
+   </div>
+   
+</div>
+<script>
+   $(function () {
+   	  
+   	  	  $(".probtn").click(function(){
+		          
+	 window.location="prolist.html"; 
+		       
+			 });
+		$(".shopbtn").click(function(){
+		          
+		 window.location="splist.html"; 
+		       
+			 });
+			 
+   	  
+      $('#myTab li:eq(1) a').tab('show');
+   });
+</script>
+  
+  
+
+	</body>
+
+</html>
