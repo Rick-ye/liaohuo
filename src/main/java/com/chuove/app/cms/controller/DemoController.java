@@ -131,14 +131,7 @@ import com.sun.tools.hat.internal.parser.Reader;
 		renderData(res);
 	}
 	
-	@RequestMapping(value="demoSubject")
-	public void demoSubject(HttpServletRequest req, HttpServletResponse res){
-		Subject subject = SecurityUtils.getSubject();
-		//if(subject.isAuthenticated()){
-		Object o =	subject.getSession().getAttribute(SessionKey.KEY_USERID);
-		logger.info("demoSubject ="+(Integer)o);
-		//}
-	}
+	
 }
 
 
