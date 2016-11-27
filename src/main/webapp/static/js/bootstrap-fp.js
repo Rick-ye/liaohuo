@@ -154,8 +154,7 @@ divs[i].className="";
 
 
  	 	/*弹出选择商品属性层*/
- $(function(){
-	 jQuery.noConflict();
+ 
 		   $("#xzspsx").modal("hide");
 		 
 		   $(".btn-ljgm").click(function(){
@@ -173,7 +172,7 @@ divs[i].className="";
 			 
 			});
 			
- });	
+		
 		
 		/*色彩性别选择*/	
 		$(".clrfl span").click(function() {
@@ -190,7 +189,9 @@ divs[i].className="";
 			  window.location="order.html"; 
 		});
 		
-
+		
+		
+	
 
 
 });
