@@ -273,7 +273,7 @@
  <li class="dqlm"><a href="index2.html"><span  class="icon1">首页</span></a></li>
  <li><a href="qbpro.html"><span   class="icon2">分类</span></a></li>
  <li><a href="gwc.html"><span  class="icon3">购物篮</span></a></li>
- <li><a href="grsz"><span  class="icon4">我的</span></a></li>
+ <li><a href="grzx"><span  class="icon4">我的</span></a></li>
  </ul>
  </div>
    

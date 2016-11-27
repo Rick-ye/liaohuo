@@ -109,27 +109,7 @@ import com.sun.tools.hat.internal.parser.Reader;
 		return "demo_edit";
 	}
 	
-	@RequestMapping(value="demoDoEdit")
-	public void demoDoEdit(HttpServletRequest req, HttpServletResponse res){
-		try {
-			String id = req.getParameter("id");
-			if(StringUtils.isBlank(id)){
-				setStatus(ActionStatus.FAIL,"demo不存在");
-			}
-			String name = req.getParameter("name");
-			String sex = req.getParameter("sex");
-			Demo demo = demoService.findDemoById(Integer.valueOf(id));
-			
-			demo.setName(name);
-			demo.setSex(sex);
-			demoService.updateDemoInfo(demo);
-			setStatus(ActionStatus.SUCCESS,"修改成功");
-		} catch (Exception e) {
-			logger.error("demoDoEdit error", e);
-			setStatus(ActionStatus.FAIL, "修改失败");
-		}
-		renderData(res);
-	}
+	
 	
 	
 }

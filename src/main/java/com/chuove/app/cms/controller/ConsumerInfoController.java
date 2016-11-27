@@ -44,6 +44,16 @@ public class ConsumerInfoController extends BaseController {
 	private static String MSG=VeriCodeUtil.getRandNum(6);
 	private static String NUM=MSG.substring(11);
 	
+	@RequestMapping(value="grzx")
+	public String grzx(){
+		return "grzx";
+	}
+	
+	@RequestMapping(value="xyc")
+	public String xyc(){
+		return "xyc";
+	}
+	
 	@RequestMapping(value="grxx")
 	public String addBank(){
 		return "grxx";
@@ -68,7 +78,10 @@ public class ConsumerInfoController extends BaseController {
 	public String grsz(){
 		return "grsz";
 	}
-	
+	@RequestMapping(value="addbank")
+	public String addbank(){
+		return "addbank";
+	}
 	@RequestMapping(value="headImg")
 	public String headImg(HttpServletRequest request, 
 			HttpServletResponse response, ModelMap model,

@@ -15,6 +15,7 @@ public class ConsumerServiceImpl implements ConsumerService {
 	
 	@Autowired
 	private ConsumerDAO consumerDAO;
+	
 
 	@Override
 	public List<String> findMobileNum() {
@@ -67,5 +68,18 @@ public class ConsumerServiceImpl implements ConsumerService {
 
 
 	
+	/*
+	dao -> mysql->sql->table 自动（单）事务处理autocommit(insert,update,delete)
+	java object <-mybatis-> db sql string
+	dao层不需要关心多表之间的业务关联性
 	
+	service biz/业务
+	由相关的dao组成或者其他资源组成
+	aservice.java (dao1-insert,dao2-update,dao3-select...) db事务处理，程序化事务处理
+	
+	mvc
+	controller mvc中的c，不处理业务，仅仅处理view-ftl与model-bean的关联
+	view -> ftl/freemarker
+	
+	*/
 }

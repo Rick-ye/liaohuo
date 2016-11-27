@@ -31,7 +31,7 @@
        	<img src="${ctx}/static/img/sjrzbtn.png"/>
        	</div>
        	<div class="col-xs-5 text-center">
-       	<img src="${ctx}/static/img/xycbtn.png"/>
+       	<a href="xyc"><img src="${ctx}/static/img/xycbtn.png"/></a>
        	</div>
        </div>
        
